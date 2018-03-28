@@ -1,5 +1,5 @@
 #include "herois.h"
-//Teste
+
 Lista::Lista ()
 {
     topo = NULL;
@@ -23,12 +23,13 @@ void Lista::AdicionaInicio()
     if (topo != nullptr)
     {
         topo = n;
-        cout << " topo null\n";
+
     }
     else
     {
-        fim = n; //na posicao que está, faz o atual apontar pra prox posicao
-        topo = n;        //anda pra proxima posicao
+        fim = n;
+        topo = n;
+        n = nullptr; //acho que tá errado
         cout << " topo nao null\n";
     }
 }
@@ -51,10 +52,10 @@ void Lista::RemoveFim()
 
 void Lista::ImprimeLista()
 {
-    node* aux;
-    aux->prox = topo;
+    node* aux = topo;
+
     int i = 1;
-    while (aux->prox != NULL)
+    while (aux->prox != nullptr)
     {
         cout << i << "." << aux->nome << endl;
         i++;
