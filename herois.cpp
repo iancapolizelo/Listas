@@ -1,5 +1,5 @@
 #include "herois.h"
-
+//Teste
 Lista::Lista ()
 {
     topo = NULL;
