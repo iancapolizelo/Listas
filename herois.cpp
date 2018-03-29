@@ -95,14 +95,19 @@ void Lista::RemoveFim() //ERRO AQUI: nao ta dando pra deletar fim ou aux->prox
     {
         node *aux;
         aux = topo;
-        while (aux->prox != nullptr)
+        node *ultimo;
+        ultimo = topo;
+
+        while (ultimo->prox != nullptr) //acha o ultimo
         {
-            aux = aux->prox;    //achar o penúltimo
+            aux = ultimo; //penultimo
+            ultimo = ultimo->prox;  //ultimo
         }
-        cout << fim->nome << " foi removido com sucesso!" << endl << endl;
-        //delete fim; // pq isso aqui tá dando erro? pq eu to dando delete num node e não new node?
-        delete aux->prox;
+        cout << ultimo->nome << " foi removido com sucesso!" << endl << endl;
+        delete ultimo; //deleta o ultimo node
+        aux->prox = nullptr; //zera o prox do penultimo
         fim = aux; // último = penúltimo
+
         ImprimeLista();
     }
 }
