@@ -30,6 +30,7 @@ void Lista::AdicionaInicio()
         n->prox = topo;
         topo = n;
     }
+    ImprimeLista();
 }
 
 
@@ -54,17 +55,56 @@ void Lista::AdicionaFim()
         fim->prox = n;
         fim = n;
     }
+    ImprimeLista();
 }
 
 
 void Lista::RemoveInicio()
 {
+    if (topo == nullptr)
+    {
+        cout << "ERRO: A lista esta vazia!" << endl << endl;
+    }
+    else
+    {
+        node *aux = nullptr;
+        aux = topo->prox;
+        cout << topo->nome << " foi removido com sucesso!" << endl << endl;
+        delete topo;
+        topo = aux;
+        ImprimeLista();
+    }
 
 }
 
-void Lista::RemoveFim()
+void Lista::RemoveFim() //ERRO AQUI: nao ta dando pra deletar fim ou aux->prox
 {
-
+    if (topo == nullptr)
+    {
+        ImprimeLista();
+    }
+    else if (topo == fim)
+    {
+        cout << topo->nome << " foi removido com sucesso!" << endl << endl;
+        delete topo;
+        delete fim;
+        topo = nullptr;
+        fim = nullptr;
+    }
+    else
+    {
+        node *aux;
+        aux = topo;
+        while (aux->prox != nullptr)
+        {
+            aux = aux->prox;    //achar o penúltimo
+        }
+        cout << fim->nome << " foi removido com sucesso!" << endl << endl;
+        //delete fim; // pq isso aqui tá dando erro? pq eu to dando delete num node e não new node?
+        delete aux->prox;
+        fim = aux; // último = penúltimo
+        ImprimeLista();
+    }
 }
 
 void Lista::ImprimeLista()
@@ -79,24 +119,21 @@ void Lista::ImprimeLista()
     }
     else
     {
-        /**
-        cout << i << "." << aux->nome << endl;//apagar
-        i++;//apagar
-        aux = aux->prox; //apagar**/
-
-
-        while (aux != nullptr) //como q eu faço pra imprimir desde o 1º?
+        while (aux != nullptr)
         {
             cout << i << "." << aux->nome << endl;
             i++;
             aux = aux->prox;
         }
     }
+    cout << endl;
 }
 
 
-void Lista::MenuPrincipal() //MUDAR PRA SWITCH
+void Lista::MenuPrincipal()
 {
+    //ADICIONAR MSG ERRO OPCAO INVALIDA (ex: ao invés de numero,
+    //usuario inserir letra)
     int opc;
     bool menu = true;
 
