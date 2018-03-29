@@ -1,11 +1,12 @@
 #ifndef HEROIS_H
 #define HEROIS_H
 #include <iostream>
+#include <string>
 using namespace std;
 
 struct node
 {
-    char nome[30]; //info
+    string nome; //info
     node *prox; //ponteiro pra struct
 };
 

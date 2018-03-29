@@ -2,7 +2,7 @@
 
 Lista::Lista ()
 {
-    topo = NULL;
+    topo = nullptr;
     fim = topo;
 }
 
@@ -12,31 +12,48 @@ Lista::~Lista ()
 void Lista::AdicionaInicio()
 {
     node* n = new node;
-    cout << "Insira nome do heroi" << endl;
-    cin >> n->nome;
+    n->prox = nullptr; //inicializada
 
-    cout << n->nome << " foi adicionado a lista!\n\n";
+    cout << "Insira nome do heroi"<< endl;
+    cin.ignore();
+    getline(cin, n->nome, '\n');
 
-    //aloca memoria (novo)
+    cout << n->nome << " foi adicionado ao inicio da lista!\n\n";
 
-    cout << topo << endl;
-    if (topo != nullptr)
+    if (topo == nullptr)
     {
         topo = n;
-
+        fim = n;
     }
     else
     {
-        fim = n;
+        n->prox = topo;
         topo = n;
-        n = nullptr; //acho que tá errado
-        cout << " topo nao null\n";
     }
 }
 
 
 void Lista::AdicionaFim()
 {
+    node* n = new node;
+    n->prox = nullptr; //inicializada
+
+    cout << "Insira nome do heroi"<< endl;
+    cin.ignore();
+    getline(cin, n->nome, '\n');
+
+    cout << n->nome << " foi adicionado ao fim da lista!\n\n";
+
+    if (topo == nullptr)
+    {
+        topo = n;
+        fim = n;
+    }
+    else
+    {
+        fim->prox = n;
+        fim = n;
+    }
 }
 
 
@@ -55,21 +72,32 @@ void Lista::ImprimeLista()
     node* aux = topo;
 
     int i = 1;
-    while (aux->prox != nullptr)
-    {
-        cout << i << "." << aux->nome << endl;
-        i++;
-        aux = aux->prox;
-    }
 
-    if (aux->prox == NULL)
-        cout << "A lista esta vazia!\n\n";
+    if (topo == nullptr)
+    {
+        cout << "A lista esta vazia!" << endl << endl;
+    }
+    else
+    {
+        /**
+        cout << i << "." << aux->nome << endl;//apagar
+        i++;//apagar
+        aux = aux->prox; //apagar**/
+
+
+        while (aux != nullptr) //como q eu faço pra imprimir desde o 1º?
+        {
+            cout << i << "." << aux->nome << endl;
+            i++;
+            aux = aux->prox;
+        }
+    }
 }
 
 
 void Lista::MenuPrincipal() //MUDAR PRA SWITCH
 {
-    int opc = 10;
+    int opc;
     bool menu = true;
 
     while (menu)

@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1522235361 source:c:\utfpr\ed1\aula 3 - listas\listas\herois.cpp
-	"herois.h"
-
-1522161578 c:\utfpr\ed1\aula 3 - listas\listas\herois.h
-	<iostream>
-
 1522161045 source:c:\utfpr\ed1\aula 3 - listas\listas\main.cpp
 	<iostream>
 	<stdio.h>
+	"herois.h"
+
+1522243527 c:\utfpr\ed1\aula 3 - listas\listas\herois.h
+	<iostream>
+	<string>
+
+1522288433 source:c:\utfpr\ed1\aula 3 - listas\listas\herois.cpp
 	"herois.h"
 
