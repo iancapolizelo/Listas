@@ -1,22 +1,22 @@
 #include "herois.h"
 
-Lista::Lista ()
+Lista::Lista () //Construtora
 {
     topo = nullptr;
     fim = topo;
 }
 
-Lista::~Lista ()
+Lista::~Lista () //Destrutora
 {
 }
 void Lista::AdicionaInicio()
 {
-    node* n = new node;
+    node* n = new node; //função new = cria e aloca node
     n->prox = nullptr; //inicializada
 
     cout << "Insira nome do heroi"<< endl;
-    cin.ignore();
-    getline(cin, n->nome, '\n');
+    cin.ignore(); //comando pra aceitar nome com espaço
+    getline(cin, n->nome, '\n'); //função pra receber linha ao invés de palavra, pra aceitar nome com espaço
 
     cout << n->nome << " foi adicionado ao inicio da lista!\n\n";
 
