@@ -1,4 +1,5 @@
 #include "herois.h"
+#include <conio.h>
 
 Lista::Lista () //Construtora
 {
@@ -11,12 +12,12 @@ Lista::~Lista () //Destrutora
 }
 void Lista::AdicionaInicio()
 {
-    node* n = new node; //funÁ„o new = cria e aloca node
+    node* n = new node; //fun√ß√£o new = cria e aloca node
     n->prox = nullptr; //inicializada
 
     cout << "Insira nome do heroi"<< endl;
-    cin.ignore(); //comando pra aceitar nome com espaÁo
-    getline(cin, n->nome, '\n'); //funÁ„o pra receber linha ao invÈs de palavra, pra aceitar nome com espaÁo
+    cin.ignore(); //comando pra aceitar nome com espa√ßo
+    getline(cin, n->nome, '\n'); //fun√ß√£o pra receber linha ao inv√©s de palavra, pra aceitar nome com espa√ßo
 
     cout << n->nome << " foi adicionado ao inicio da lista!\n\n";
 
@@ -106,7 +107,7 @@ void Lista::RemoveFim() //ERRO AQUI: nao ta dando pra deletar fim ou aux->prox
         cout << ultimo->nome << " foi removido com sucesso!" << endl << endl;
         delete ultimo; //deleta o ultimo node
         aux->prox = nullptr; //zera o prox do penultimo
-        fim = aux; // ˙ltimo = pen˙ltimo
+        fim = aux; // √∫ltimo = pen√∫ltimo
 
         ImprimeLista();
     }
@@ -124,12 +125,17 @@ void Lista::ImprimeLista()
     }
     else
     {
+        //Primeiro imprime as informa√ß√µes de topo e fim
+        cout << "Topo:" << topo << "\tEndereco Topo: " << &topo << "\tFim: " << fim << "\tEndereco Fim: " << &fim << endl;
+        
+        //Imprime o resto
         while (aux != nullptr)
         {
-            cout << i << "." << aux->nome << endl;
+            cout << "No" << i << ": Endereco: " << aux << "\tConteudo: "<< aux->nome << "\tProximo: " << aux->prox << endl;
             i++;
             aux = aux->prox;
         }
+
     }
     cout << endl;
 }
@@ -137,47 +143,56 @@ void Lista::ImprimeLista()
 
 void Lista::MenuPrincipal()
 {
-    //ADICIONAR MSG ERRO OPCAO INVALIDA (ex: ao invÈs de numero,
-    //usuario inserir letra)
     int opc;
     bool menu = true;
 
     while (menu)
     {
+        
         cout << "Escolha uma opcao pra comecar\n" <<
              "1. Adicionar ao inicio da lista\n" <<
              "2. Adicionar ao fim da lista\n" <<
              "3. Remover do inicio da lista\n" <<
              "4. Remover do fim da lista\n" <<
              "5. Imprimir lista\n" <<
-             "0. Encerrar e ir pra casa\n\n";
+             "9. Encerrar e ir pra casa\n\n";
 
         cin >> opc;
-
-        switch (opc)
+        
+        if(!isalpha(opc))
         {
-        case 1: //coisas
-            AdicionaInicio();
-            break;
-        case 2:
-            AdicionaFim();
-            break;
-        case 3:
-            RemoveInicio();
-            break;
-        case 4:
-            RemoveFim();
-            break;
-        case 5:
-            ImprimeLista();
-            break;
-        case 0:
-            cout << "tchau tchau" << endl;
-            menu = false;
-            break;
-        default:
-            cout << "ERRO: insira uma opcao valida" << endl;
-            break;
+            cout << cout << "ERRO: insira uma opcao valida" << endl;
+            cin >> opc;
         }
+        
+        else
+        {
+            switch (opc)
+            {
+                case 1: //coisas
+                    AdicionaInicio();
+                    break;
+                case 2:
+                    AdicionaFim();
+                     break;
+                case 3:
+                    RemoveInicio();
+                    break;
+                case 4:
+                    RemoveFim();
+                    break;
+                case 5:
+                    ImprimeLista();
+                    break;
+                case 9:
+                    cout << "tchau tchau" << endl;
+                    menu = false;
+                    break;
+                default:
+                    cout << "ERRO: insira uma opcao valida" << endl;
+                    break;
+             }
+        }
+
     }
 }
