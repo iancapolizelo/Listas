@@ -11,12 +11,12 @@ Lista::~Lista () //Destrutora
 }
 void Lista::AdicionaInicio()
 {
-    node* n = new node; //funÁ„o new = cria e aloca node
+    node* n = new node; //fun√ß√£o new = cria e aloca node
     n->prox = nullptr; //inicializada
 
     cout << "Insira nome do heroi"<< endl;
-    cin.ignore(); //comando pra aceitar nome com espaÁo
-    getline(cin, n->nome, '\n'); //funÁ„o pra receber linha ao invÈs de palavra, pra aceitar nome com espaÁo
+    cin.ignore(); //comando pra aceitar nome com espa√ßo
+    getline(cin, n->nome, '\n'); //fun√ß√£o pra receber linha ao inv√©s de palavra, pra aceitar nome com espa√ßo
 
     cout << n->nome << " foi adicionado ao inicio da lista!\n\n";
 
@@ -106,7 +106,7 @@ void Lista::RemoveFim() //ERRO AQUI: nao ta dando pra deletar fim ou aux->prox
         cout << ultimo->nome << " foi removido com sucesso!" << endl << endl;
         delete ultimo; //deleta o ultimo node
         aux->prox = nullptr; //zera o prox do penultimo
-        fim = aux; // ˙ltimo = pen˙ltimo
+        fim = aux; // √∫ltimo = pen√∫ltimo
 
         ImprimeLista();
     }
@@ -137,47 +137,47 @@ void Lista::ImprimeLista()
 
 void Lista::MenuPrincipal()
 {
-    //ADICIONAR MSG ERRO OPCAO INVALIDA (ex: ao invÈs de numero,
-    //usuario inserir letra)
-    int opc;
-    bool menu = true;
 
+    char opc;
+    bool menu = true;
+    
     while (menu)
     {
         cout << "Escolha uma opcao pra comecar\n" <<
-             "1. Adicionar ao inicio da lista\n" <<
-             "2. Adicionar ao fim da lista\n" <<
-             "3. Remover do inicio da lista\n" <<
-             "4. Remover do fim da lista\n" <<
-             "5. Imprimir lista\n" <<
-             "0. Encerrar e ir pra casa\n\n";
-
+        "1. Adicionar ao inicio da lista\n" <<
+        "2. Adicionar ao fim da lista\n" <<
+        "3. Remover do inicio da lista\n" <<
+        "4. Remover do fim da lista\n" <<
+        "5. Imprimir lista\n" <<
+        "0. Encerrar e ir pra casa\n\n";
+        
         cin >> opc;
-
-        switch (opc)
-        {
-        case 1: //coisas
+        
+      
+        //Aqui ser√£o as op√ß√£os de menu, j√° fazendo a sele√ß√£o para n√£o aceitar outros caracteres
+        if((opc != '1') && (opc != '2') && (opc != '3') && (opc != '4') && (opc != '5') && (opc != '0'))
+            cout << "ERRO: insira uma opcao valida\n" << endl;
+        
+        if(opc == '1')
             AdicionaInicio();
-            break;
-        case 2:
+        
+        if(opc == '2')
             AdicionaFim();
-            break;
-        case 3:
+        
+        if(opc == '3')
             RemoveInicio();
-            break;
-        case 4:
+        
+        if(opc == '4')
             RemoveFim();
-            break;
-        case 5:
+        
+        if(opc == '5')
             ImprimeLista();
-            break;
-        case 0:
+        
+        if(opc == '0')
+        {
             cout << "tchau tchau" << endl;
             menu = false;
-            break;
-        default:
-            cout << "ERRO: insira uma opcao valida" << endl;
-            break;
         }
     }
 }
+
